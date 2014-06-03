@@ -64,7 +64,6 @@ class GPU_EXPORT InProcessCommandBuffer : public CommandBuffer,
   virtual ~InProcessCommandBuffer();
 
   static void SetGpuMemoryBufferFactory(GpuMemoryBufferFactory* factory);
-  static void SetGpuMemoryBufferFactory(GpuMemoryBufferFactory* factory);
 
   // If |surface| is not NULL, use it directly; in this case, the command
   // buffer gpu thread must be the same as the client thread. Otherwise create
