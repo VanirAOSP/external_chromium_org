@@ -342,10 +342,6 @@ bool InProcessCommandBuffer::InitializeOnGpuThread(
       &GpuScheduler::SetGetBuffer, base::Unretained(gpu_scheduler_.get())));
   command_buffer_ = command_buffer.Pass();
 
-  gpu_control_.reset(
-      new GpuControlService(decoder_->GetContextGroup()->image_manager(),
-                            g_gpu_memory_buffer_factory));
-
   decoder_->set_engine(gpu_scheduler_.get());
 
   if (!surface_) {
