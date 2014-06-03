@@ -47,7 +47,6 @@ namespace gpu {
 namespace {
 
 static GpuMemoryBufferFactory* g_gpu_memory_buffer_factory = NULL;
-static GpuMemoryBufferFactory* g_gpu_memory_buffer_factory = NULL;
 
 template <typename T>
 static void RunTaskWithResult(base::Callback<T(void)> task,
