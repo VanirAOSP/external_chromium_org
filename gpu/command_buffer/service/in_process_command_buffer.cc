@@ -74,14 +74,11 @@ class GpuInProcessThread
   virtual void ScheduleTask(const base::Closure& task) OVERRIDE;
   virtual void ScheduleIdleWork(const base::Closure& callback) OVERRIDE;
   virtual bool UseVirtualizedGLContexts() OVERRIDE { return false; }
-  virtual scoped_refptr<gles2::ShaderTranslatorCache> shader_translator_cache()
-      OVERRIDE;
 
  private:
   virtual ~GpuInProcessThread();
   friend class base::RefCountedThreadSafe<GpuInProcessThread>;
 
-  scoped_refptr<gpu::gles2::ShaderTranslatorCache> shader_translator_cache_;
   DISALLOW_COPY_AND_ASSIGN(GpuInProcessThread);
 };
 
@@ -100,13 +97,6 @@ void GpuInProcessThread::ScheduleTask(const base::Closure& task) {
 void GpuInProcessThread::ScheduleIdleWork(const base::Closure& callback) {
   message_loop()->PostDelayedTask(
       FROM_HERE, callback, base::TimeDelta::FromMilliseconds(5));
-}
-
-scoped_refptr<gles2::ShaderTranslatorCache>
-GpuInProcessThread::shader_translator_cache() {
-  if (!shader_translator_cache_.get())
-    shader_translator_cache_ = new gpu::gles2::ShaderTranslatorCache;
-  return shader_translator_cache_;
 }
 
 base::LazyInstance<std::set<InProcessCommandBuffer*> > default_thread_clients_ =
@@ -143,7 +133,7 @@ private:
   base::ConditionVariable cond_var_;
 };
 
-SyncPointManager::SyncPointManager() : next_sync_point_(1), cond_var_(&lock_) {}
+SyncPointManager::SyncPointManager() : next_sync_point_(0), cond_var_(&lock_) {}
 
 SyncPointManager::~SyncPointManager() {
   DCHECK_EQ(pending_sync_points_.size(), 0U);
@@ -333,14 +323,17 @@ bool InProcessCommandBuffer::InitializeOnGpuThread(
                         ? params.context_group->gl_share_group_.get()
                         : new gfx::GLShareGroup;
 
+StreamTextureManager* stream_texture_manager = NULL;
 #if defined(OS_ANDROID)
-  stream_texture_manager_.reset(new StreamTextureManagerInProcess);
+  stream_texture_manager = stream_texture_manager_ =
+      params.context_group ? params.context_group->stream_texture_manager_.get()
+                    : new StreamTextureManagerInProcess;
 #endif
 
   bool bind_generates_resource = false;
   decoder_.reset(gles2::GLES2Decoder::Create(
       params.context_group
-          ? params.context_group->decoder_->GetContextGroup()
+          params.context_group ? params.context_group->decoder_->GetContextGroup()
           : new gles2::ContextGroup(NULL,
                                     NULL,
                                     NULL,
@@ -417,7 +410,11 @@ bool InProcessCommandBuffer::InitializeOnGpuThread(
 
   gpu_control_.reset(
       new GpuControlService(decoder_->GetContextGroup()->image_manager(),
-                            decoder_->GetQueryManager()));
+                            g_gpu_memory_buffer_factory,
+                            decoder_->GetContextGroup()->mailbox_manager(),
+                            decoder_->GetQueryManager(),
+                            decoder_->GetCapabilities()));
+  *params.capabilities = gpu_control_->GetCapabilities();
 
   if (!params.is_offscreen) {
     decoder_->SetResizeCallback(base::Bind(
@@ -453,10 +450,6 @@ bool InProcessCommandBuffer::DestroyOnGpuThread() {
   context_ = NULL;
   surface_ = NULL;
   gl_share_group_ = NULL;
-#if defined(OS_ANDROID)
-  stream_texture_manager_.reset();
-#endif
-
   return true;
 }
 
@@ -488,6 +481,11 @@ CommandBuffer::State InProcessCommandBuffer::GetLastState() {
   return last_state_;
 }
 
+CommandBuffer::State InProcessCommandBuffer::GetState() {
+  CheckSequencedThread();
+  return GetStateFast();
+}
+
 int32 InProcessCommandBuffer::GetLastToken() {
   CheckSequencedThread();
   GetStateFast();
@@ -502,7 +500,7 @@ void InProcessCommandBuffer::FlushOnGpuThread(int32 put_offset) {
   {
     // Update state before signaling the flush event.
     base::AutoLock lock(state_after_last_flush_lock_);
-    state_after_last_flush_ = command_buffer_->GetLastState();
+    state_after_last_flush_ = command_buffer_->GetState();
   }
   DCHECK((!error::IsError(state_after_last_flush_.error) && !context_lost_) ||
          (error::IsError(state_after_last_flush_.error) && context_lost_));
@@ -543,22 +541,23 @@ void InProcessCommandBuffer::Flush(int32 put_offset) {
   QueueTask(task);
 }
 
-void InProcessCommandBuffer::WaitForTokenInRange(int32 start, int32 end) {
-  CheckSequencedThread();
-  while (!InRange(start, end, GetLastToken()) &&
-         last_state_.error == gpu::error::kNoError)
-    flush_event_.Wait();
-}
+CommandBuffer::State InProcessCommandBuffer::FlushSync(int32 put_offset,
+                                                       int32 last_known_get) {
 
 void InProcessCommandBuffer::WaitForGetOffsetInRange(int32 start, int32 end) {
   CheckSequencedThread();
 
+if (put_offset == last_known_get || last_state_.error != gpu::error::kNoError)
+    return last_state_;
+  Flush(put_offset);
   GetStateFast();
   while (!InRange(start, end, last_state_.get_offset) &&
+  while (last_known_get == last_state_.get_offset &&
          last_state_.error == gpu::error::kNoError) {
     flush_event_.Wait();
     GetStateFast();
   }
+  return last_state_;
 }
 
 void InProcessCommandBuffer::SetGetBuffer(int32 shm_id) {
@@ -573,12 +572,12 @@ void InProcessCommandBuffer::SetGetBuffer(int32 shm_id) {
   }
   {
     base::AutoLock lock(state_after_last_flush_lock_);
-    state_after_last_flush_ = command_buffer_->GetLastState();
+    state_after_last_flush_ = command_buffer_->GetState();
   }
 }
 
-scoped_refptr<Buffer> InProcessCommandBuffer::CreateTransferBuffer(size_t size,
-                                                                   int32* id) {
+gpu::Buffer InProcessCommandBuffer::CreateTransferBuffer(size_t size,
+                                                         int32* id) {
   CheckSequencedThread();
   base::AutoLock lock(command_buffer_lock_);
   return command_buffer_->CreateTransferBuffer(size, id);
@@ -586,10 +585,9 @@ scoped_refptr<Buffer> InProcessCommandBuffer::CreateTransferBuffer(size_t size,
 
 void InProcessCommandBuffer::DestroyTransferBuffer(int32 id) {
   CheckSequencedThread();
-  base::Closure task =
-      base::Bind(&InProcessCommandBuffer::DestroyTransferBufferOnGputhread,
-                 base::Unretained(this),
-                 id);
+  base::Closure task = base::Bind(&CommandBuffer::DestroyTransferBuffer,
+                                  base::Unretained(command_buffer_.get()),
+                                  id);
 
   QueueTask(task);
 }
@@ -607,44 +605,30 @@ gfx::GpuMemoryBuffer* InProcessCommandBuffer::CreateGpuMemoryBuffer(
     size_t width,
     size_t height,
     unsigned internalformat,
-    unsigned usage,
     int32* id) {
   CheckSequencedThread();
 
-  *id = -1;
-  linked_ptr<gfx::GpuMemoryBuffer> buffer =
-      make_linked_ptr(g_gpu_memory_buffer_factory->CreateGpuMemoryBuffer(
-          width, height, internalformat, usage));
-  if (!buffer.get())
-    return NULL;
-
-  static int32 next_id = 1;
-  *id = next_id++;
-
-  base::Closure task = base::Bind(&GpuControlService::RegisterGpuMemoryBuffer,
-                                  base::Unretained(gpu_control_.get()),
-                                  *id,
-                                  buffer->GetHandle(),
-                                  width,
-                                  height,
-                                  internalformat);
-
-  QueueTask(task);
-
-  gpu_memory_buffers_[*id] = buffer;
-  return buffer.get();
+  base::AutoLock lock(command_buffer_lock_);
+  return gpu_control_->CreateGpuMemoryBuffer(width,
+                                             height,
+                                             internalformat,
+                                             id);
 }
 
 void InProcessCommandBuffer::DestroyGpuMemoryBuffer(int32 id) {
   CheckSequencedThread();
-  GpuMemoryBufferMap::iterator it = gpu_memory_buffers_.find(id);
-  if (it != gpu_memory_buffers_.end())
-    gpu_memory_buffers_.erase(it);
-  base::Closure task = base::Bind(&GpuControlService::UnregisterGpuMemoryBuffer,
+  base::Closure task = base::Bind(&GpuControl::DestroyGpuMemoryBuffer,
                                   base::Unretained(gpu_control_.get()),
                                   id);
 
   QueueTask(task);
+}
+
+bool InProcessCommandBuffer::GenerateMailboxNames(
+    unsigned num, std::vector<gpu::Mailbox>* names) {
+  CheckSequencedThread();
+  base::AutoLock lock(command_buffer_lock_);
+  return gpu_control_->GenerateMailboxNames(num, names);
 }
 
 uint32 InProcessCommandBuffer::InsertSyncPoint() {
@@ -689,7 +673,7 @@ void InProcessCommandBuffer::SignalSyncPointOnGpuThread(
 void InProcessCommandBuffer::SignalQuery(unsigned query,
                                          const base::Closure& callback) {
   CheckSequencedThread();
-  QueueTask(base::Bind(&GpuControlService::SignalQuery,
+  QueueTask(base::Bind(&GpuControl::SignalQuery,
                        base::Unretained(gpu_control_.get()),
                        query,
                        WrapCallback(callback)));
@@ -705,29 +689,6 @@ void InProcessCommandBuffer::Echo(const base::Closure& callback) {
   QueueTask(WrapCallback(callback));
 }
 
-uint32 InProcessCommandBuffer::CreateStreamTexture(uint32 texture_id) {
-  base::WaitableEvent completion(true, false);
-  uint32 stream_id = 0;
-  base::Callback<uint32(void)> task =
-      base::Bind(&InProcessCommandBuffer::CreateStreamTextureOnGpuThread,
-                 base::Unretained(this),
-                 texture_id);
-  QueueTask(
-      base::Bind(&RunTaskWithResult<uint32>, task, &stream_id, &completion));
-  completion.Wait();
-  return stream_id;
-}
-
-uint32 InProcessCommandBuffer::CreateStreamTextureOnGpuThread(
-    uint32 client_texture_id) {
-#if defined(OS_ANDROID)
-  return stream_texture_manager_->CreateStreamTexture(
-      client_texture_id, decoder_->GetContextGroup()->texture_manager());
-#else
-  return 0;
-#endif
-}
-
 gpu::error::Error InProcessCommandBuffer::GetLastError() {
   CheckSequencedThread();
   return last_state_.error;
@@ -738,6 +699,15 @@ bool InProcessCommandBuffer::Initialize() {
   return false;
 }
 
+void InProcessCommandBuffer::SetGetOffset(int32 get_offset) { NOTREACHED(); }
+void InProcessCommandBuffer::SetToken(int32 token) { NOTREACHED(); }
+void InProcessCommandBuffer::SetParseError(gpu::error::Error error) {
+  NOTREACHED();
+}
+void InProcessCommandBuffer::SetContextLostReason(
+    gpu::error::ContextLostReason reason) {
+  NOTREACHED();
+}
 namespace {
 
 void PostCallback(const scoped_refptr<base::MessageLoopProxy>& loop,
