@@ -128,8 +128,13 @@ class ScopedPixelAccess {
 };
 
 bool HardwareEnabled() {
+// HACK: CAPRI_HWC has problems with GL image upload which can lead to system crash
+#ifdef CAPRI_HWC
+  static bool g_hw_enabled = false;
+#else
   static bool g_hw_enabled = !CommandLine::ForCurrentProcess()->HasSwitch(
       switches::kDisableWebViewGLMode);
+#endif
   return g_hw_enabled;
 }
 
