@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroi
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroid.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroid.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroid.java: $(LOCAL_PATH)/net/android/java/CertVerifyStatusAndroid.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/net/android/cert_verify_status_android_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/net; cd $(gyp_local_path)/net; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroid.java" "--template=android/java/CertVerifyStatusAndroid.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/net; cd $(gyp_local_path)/net; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/net/CertVerifyStatusAndroid.java" "--template=android/java/CertVerifyStatusAndroid.template"
 
 
 

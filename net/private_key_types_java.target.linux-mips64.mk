@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java: g
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java: $(LOCAL_PATH)/net/android/java/PrivateKeyType.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/net/android/private_key_type_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/net; cd $(gyp_local_path)/net; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java" "--template=android/java/PrivateKeyType.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/net; cd $(gyp_local_path)/net; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/net/PrivateKeyType.java" "--template=android/java/PrivateKeyType.template"
 
 
 
