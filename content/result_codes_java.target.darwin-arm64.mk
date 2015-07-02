@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes.java: $(LOCAL_PATH)/content/public/android/java/src/org/chromium/content/common/ResultCodes.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/content/public/common/result_codes_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes.java" "--template=public/android/java/src/org/chromium/content/common/ResultCodes.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/common; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/common/ResultCodes.java" "--template=public/android/java/src/org/chromium/content/common/ResultCodes.template"
 
 
 

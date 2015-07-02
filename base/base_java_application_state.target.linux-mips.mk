@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java: $(LOCAL_PATH)/base/android/java/src/org/chromium/base/ApplicationState.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/base/android/application_state_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/base; cd $(gyp_local_path)/base; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java" "--template=android/java/src/org/chromium/base/ApplicationState.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/base; cd $(gyp_local_path)/base; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/base/ApplicationState.java" "--template=android/java/src/org/chromium/base/ApplicationState.template"
 
 
 

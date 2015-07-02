@@ -24,7 +24,7 @@ $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/p
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py: $(LOCAL_PATH)/third_party/libphonenumber/src/resources/phonemetadata.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers; cd $(gyp_local_path)/third_party/libphonenumber; python ../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.h" --proto-in-dir src/resources --proto-in-file "phonemetadata$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers" --python_out "$(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers"
+	@mkdir -p $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers; cd $(gyp_local_path)/third_party/libphonenumber; python ../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.h" --proto-in-dir src/resources --proto-in-file "phonemetadata$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers" --python_out "$(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers"
 
 $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.h: $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py ;
@@ -35,7 +35,7 @@ $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/p
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py: $(LOCAL_PATH)/third_party/libphonenumber/src/resources/phonenumber.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers; cd $(gyp_local_path)/third_party/libphonenumber; python ../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.h" --proto-in-dir src/resources --proto-in-file "phonenumber$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers" --python_out "$(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers"
+	@mkdir -p $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers; cd $(gyp_local_path)/third_party/libphonenumber; python ../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.h" --proto-in-dir src/resources --proto-in-file "phonenumber$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers" --python_out "$(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers"
 
 $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.h: $(gyp_shared_intermediate_dir)/pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py ;
@@ -54,9 +54,9 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/phonemetadata.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/phonenumber.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/phonemetadata.pb.cc \
 	$(gyp_intermediate_dir)/phonenumber.pb.cc \

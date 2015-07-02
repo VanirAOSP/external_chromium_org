@@ -38,11 +38,11 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/devtools_resources_map.cc: $(gyp_shared_intermediate_dir)/webkit/grit/devtools_resources_map.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/webui_resources_map.cc: $(gyp_shared_intermediate_dir)/ui/resources/grit/webui_resources_map.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/devtools_protocol_constants.cc: $(gyp_shared_intermediate_dir)/content/browser/devtools/devtools_protocol_constants.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/devtools_resources_map.cc \
 	$(gyp_intermediate_dir)/webui_resources_map.cc \

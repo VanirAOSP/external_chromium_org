@@ -24,7 +24,7 @@ $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTexturePlatformWrapper_jni.h: gy
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTexturePlatformWrapper_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTexturePlatformWrapper_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTexturePlatformWrapper_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/gl/SurfaceTexturePlatformWrapper.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/gl/jni; cd $(gyp_local_path)/ui/gl; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gl/SurfaceTexturePlatformWrapper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gl/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/gl/jni; cd $(gyp_local_path)/ui/gl; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gl/SurfaceTexturePlatformWrapper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gl/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTextureListener_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -33,7 +33,7 @@ $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTextureListener_jni.h: gyp_inter
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTextureListener_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTextureListener_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/gl/jni/SurfaceTextureListener_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/gl/SurfaceTextureListener.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/gl/jni; cd $(gyp_local_path)/ui/gl; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gl/SurfaceTextureListener.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gl/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/gl/jni; cd $(gyp_local_path)/ui/gl; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gl/SurfaceTextureListener.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gl/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 

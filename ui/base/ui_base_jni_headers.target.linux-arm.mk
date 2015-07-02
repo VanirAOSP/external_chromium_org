@@ -23,7 +23,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/Clipboard_jni.h: gyp_intermediate_dir := $
 $(gyp_shared_intermediate_dir)/ui/jni/Clipboard_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/Clipboard_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/Clipboard_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/Clipboard.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/Clipboard.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/Clipboard.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/DeviceFormFactor_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -32,7 +32,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/DeviceFormFactor_jni.h: gyp_intermediate_d
 $(gyp_shared_intermediate_dir)/ui/jni/DeviceFormFactor_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/DeviceFormFactor_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/DeviceFormFactor_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/DeviceFormFactor.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/DeviceFormFactor.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/DeviceFormFactor.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/LocalizationUtils_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -41,7 +41,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/LocalizationUtils_jni.h: gyp_intermediate_
 $(gyp_shared_intermediate_dir)/ui/jni/LocalizationUtils_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/LocalizationUtils_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/LocalizationUtils_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/LocalizationUtils.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/LocalizationUtils.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/LocalizationUtils.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/ResourceBundle_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -50,7 +50,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/ResourceBundle_jni.h: gyp_intermediate_dir
 $(gyp_shared_intermediate_dir)/ui/jni/ResourceBundle_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/ResourceBundle_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/ResourceBundle_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/ResourceBundle.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/ResourceBundle.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/ResourceBundle.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/SelectFileDialog_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -59,7 +59,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/SelectFileDialog_jni.h: gyp_intermediate_d
 $(gyp_shared_intermediate_dir)/ui/jni/SelectFileDialog_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/SelectFileDialog_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/SelectFileDialog_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/SelectFileDialog.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/SelectFileDialog.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/SelectFileDialog.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/TouchDevice_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -68,7 +68,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/TouchDevice_jni.h: gyp_intermediate_dir :=
 $(gyp_shared_intermediate_dir)/ui/jni/TouchDevice_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/TouchDevice_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/TouchDevice_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/TouchDevice.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/TouchDevice.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/TouchDevice.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/ViewAndroid_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -77,7 +77,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/ViewAndroid_jni.h: gyp_intermediate_dir :=
 $(gyp_shared_intermediate_dir)/ui/jni/ViewAndroid_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/ViewAndroid_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/ViewAndroid_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/ViewAndroid.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/ViewAndroid.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/ViewAndroid.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/jni/WindowAndroid_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -86,7 +86,7 @@ $(gyp_shared_intermediate_dir)/ui/jni/WindowAndroid_jni.h: gyp_intermediate_dir 
 $(gyp_shared_intermediate_dir)/ui/jni/WindowAndroid_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/jni/WindowAndroid_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/jni/WindowAndroid_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/base/WindowAndroid.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/WindowAndroid.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/jni; cd $(gyp_local_path)/ui/base; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/base/WindowAndroid.java --output_dir "$(gyp_shared_intermediate_dir)/ui/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 

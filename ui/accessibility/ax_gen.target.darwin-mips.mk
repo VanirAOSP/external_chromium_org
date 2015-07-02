@@ -21,7 +21,7 @@ $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc: gyp_intermediate_di
 $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc: $(LOCAL_PATH)/ui/accessibility/ax_enums.idl $(LOCAL_PATH)/tools/json_schema_compiler/cc_generator.py $(LOCAL_PATH)/tools/json_schema_compiler/code.py $(LOCAL_PATH)/tools/json_schema_compiler/compiler.py $(LOCAL_PATH)/tools/json_schema_compiler/cpp_generator.py $(LOCAL_PATH)/tools/json_schema_compiler/cpp_type_generator.py $(LOCAL_PATH)/tools/json_schema_compiler/cpp_util.py $(LOCAL_PATH)/tools/json_schema_compiler/h_generator.py $(LOCAL_PATH)/tools/json_schema_compiler/idl_schema.py $(LOCAL_PATH)/tools/json_schema_compiler/model.py $(LOCAL_PATH)/tools/json_schema_compiler/util.cc $(LOCAL_PATH)/tools/json_schema_compiler/util.h $(LOCAL_PATH)/tools/json_schema_compiler/util_cc_helper.py $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/accessibility; cd $(gyp_local_path)/ui/accessibility; python ../../tools/json_schema_compiler/compiler.py ax_enums.idl "--root=../.." "--destdir=$(gyp_shared_intermediate_dir)" "--namespace=ui" "--generator=cpp" "--include-rules="
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/accessibility; cd $(gyp_local_path)/ui/accessibility; python ../../tools/json_schema_compiler/compiler.py ax_enums.idl "--root=../.." "--destdir=$(gyp_shared_intermediate_dir)" "--namespace=ui" "--generator=cpp" "--include-rules="
 
 $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.h: $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc ;
 
@@ -35,7 +35,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/ax_enums.cc: $(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/ax_enums.cc \
 	$(gyp_shared_intermediate_dir)/ui/accessibility/ax_enums.h

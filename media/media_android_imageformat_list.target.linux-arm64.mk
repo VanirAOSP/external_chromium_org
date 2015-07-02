@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java: gy
 $(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java: $(LOCAL_PATH)/media/base/android/java/src/org/chromium/media/ImageFormat.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/media/video/capture/android/imageformat_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/media; cd $(gyp_local_path)/media; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java" "--template=base/android/java/src/org/chromium/media/ImageFormat.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/media; cd $(gyp_local_path)/media; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/media/ImageFormat.java" "--template=base/android/java/src/org/chromium/media/ImageFormat.template"
 
 
 

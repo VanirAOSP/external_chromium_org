@@ -28,7 +28,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/autofill_regex_constants.cc: $(gyp_shared_intermediate_dir)/autofill_regex_constants.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/autofill_regex_constants.cc
 

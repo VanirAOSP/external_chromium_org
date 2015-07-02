@@ -23,7 +23,7 @@ $(gyp_shared_intermediate_dir)/printing/jni/PrintingContext_jni.h: gyp_intermedi
 $(gyp_shared_intermediate_dir)/printing/jni/PrintingContext_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/printing/jni/PrintingContext_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/printing/jni/PrintingContext_jni.h: $(LOCAL_PATH)/printing/android/java/src/org/chromium/printing/PrintingContext.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/printing/jni; cd $(gyp_local_path)/printing; ../base/android/jni_generator/jni_generator.py --input_file android/java/src/org/chromium/printing/PrintingContext.java --output_dir "$(gyp_shared_intermediate_dir)/printing/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/printing/jni; cd $(gyp_local_path)/printing; ../base/android/jni_generator/jni_generator.py --input_file android/java/src/org/chromium/printing/PrintingContext.java --output_dir "$(gyp_shared_intermediate_dir)/printing/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 

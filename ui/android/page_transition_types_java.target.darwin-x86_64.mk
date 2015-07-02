@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionType
 $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionTypes.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionTypes.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionTypes.java: $(LOCAL_PATH)/ui/android/java/PageTransitionTypes.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/ui/base/page_transition_types_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base; cd $(gyp_local_path)/ui/android; python ../../build/android/gyp/gcc_preprocess.py "--include-path=../.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionTypes.java" "--template=java/PageTransitionTypes.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base; cd $(gyp_local_path)/ui/android; python ../../build/android/gyp/gcc_preprocess.py "--include-path=../.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/ui/base/PageTransitionTypes.java" "--template=java/PageTransitionTypes.template"
 
 
 

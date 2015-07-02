@@ -70,11 +70,11 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/gl_bindings_autogen_gl.cc: $(gyp_shared_intermediate_dir)/ui/gl/gl_bindings_autogen_gl.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/gl_bindings_autogen_osmesa.cc: $(gyp_shared_intermediate_dir)/ui/gl/gl_bindings_autogen_osmesa.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/gl_bindings_autogen_egl.cc: $(gyp_shared_intermediate_dir)/ui/gl/gl_bindings_autogen_egl.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/gl_bindings_autogen_gl.cc \
 	$(gyp_intermediate_dir)/gl_bindings_autogen_osmesa.cc \

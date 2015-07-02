@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEve
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEventType.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEventType.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEventType.java: $(LOCAL_PATH)/content/public/android/java/src/org/chromium/content/browser/GestureEventType.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/content/browser/android/gesture_event_type_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEventType.java" "--template=public/android/java/src/org/chromium/content/browser/GestureEventType.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/GestureEventType.java" "--template=public/android/java/src/org/chromium/content/browser/GestureEventType.template"
 
 
 

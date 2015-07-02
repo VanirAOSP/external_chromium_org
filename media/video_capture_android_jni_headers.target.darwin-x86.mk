@@ -23,7 +23,7 @@ $(gyp_shared_intermediate_dir)/media/jni/VideoCapture_jni.h: gyp_intermediate_di
 $(gyp_shared_intermediate_dir)/media/jni/VideoCapture_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/media/jni/VideoCapture_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/media/jni/VideoCapture_jni.h: $(LOCAL_PATH)/media/base/android/java/src/org/chromium/media/VideoCapture.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/media/jni; cd $(gyp_local_path)/media; ../base/android/jni_generator/jni_generator.py --input_file base/android/java/src/org/chromium/media/VideoCapture.java --output_dir "$(gyp_shared_intermediate_dir)/media/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/media/jni; cd $(gyp_local_path)/media; ../base/android/jni_generator/jni_generator.py --input_file base/android/java/src/org/chromium/media/VideoCapture.java --output_dir "$(gyp_shared_intermediate_dir)/media/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/media/jni/VideoCaptureFactory_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -32,7 +32,7 @@ $(gyp_shared_intermediate_dir)/media/jni/VideoCaptureFactory_jni.h: gyp_intermed
 $(gyp_shared_intermediate_dir)/media/jni/VideoCaptureFactory_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/media/jni/VideoCaptureFactory_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/media/jni/VideoCaptureFactory_jni.h: $(LOCAL_PATH)/media/base/android/java/src/org/chromium/media/VideoCaptureFactory.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/media/jni; cd $(gyp_local_path)/media; ../base/android/jni_generator/jni_generator.py --input_file base/android/java/src/org/chromium/media/VideoCaptureFactory.java --output_dir "$(gyp_shared_intermediate_dir)/media/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/media/jni; cd $(gyp_local_path)/media; ../base/android/jni_generator/jni_generator.py --input_file base/android/java/src/org/chromium/media/VideoCaptureFactory.java --output_dir "$(gyp_shared_intermediate_dir)/media/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 

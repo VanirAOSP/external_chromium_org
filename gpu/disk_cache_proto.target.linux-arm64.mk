@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_pro
 $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py: $(LOCAL_PATH)/gpu/command_buffer/service/disk_cache_proto.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service $(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service; cd $(gyp_local_path)/gpu; python ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.h" --proto-in-dir command_buffer/service --proto-in-file "disk_cache_proto$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service" --python_out "$(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service"
+	@mkdir -p $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service $(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service; cd $(gyp_local_path)/gpu; python ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.h" --proto-in-dir command_buffer/service --proto-in-file "disk_cache_proto$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service" --python_out "$(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service"
 
 $(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.h: $(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py ;
@@ -38,7 +38,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/disk_cache_proto.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/disk_cache_proto.pb.cc \
 	$(gyp_shared_intermediate_dir)/pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py \

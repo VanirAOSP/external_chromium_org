@@ -109,7 +109,7 @@ $(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c: gyp_intermediate_dir :=
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c: $(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_nasm.gperf $(gyp_shared_intermediate_dir)/genperf $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" "$(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_nasm.gperf" "$(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c"
+	@mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" "$(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_nasm.gperf" "$(gyp_intermediate_dir)/third_party/yasm/x86insn_nasm.c"
 
 
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c: gyp_local_path := $(LOCAL_PATH)
@@ -118,7 +118,7 @@ $(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c: gyp_intermediate_dir := 
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c: $(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_gas.gperf $(gyp_shared_intermediate_dir)/genperf $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" "$(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_gas.gperf" "$(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c"
+	@mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" "$(gyp_shared_intermediate_dir)/third_party/yasm/x86insn_gas.gperf" "$(gyp_intermediate_dir)/third_party/yasm/x86insn_gas.c"
 
 
 
@@ -130,7 +130,7 @@ $(gyp_intermediate_dir)/third_party/yasm/gas-token.c: gyp_intermediate_dir := $(
 $(gyp_intermediate_dir)/third_party/yasm/gas-token.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_intermediate_dir)/third_party/yasm/gas-token.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_intermediate_dir)/third_party/yasm/gas-token.c: $(LOCAL_PATH)/third_party/yasm/source/patched-yasm/modules/parsers/gas/gas-token.re $(gyp_shared_intermediate_dir)/re2c $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/re2c" -b -o "$(gyp_intermediate_dir)/third_party/yasm/gas-token.c" source/patched-yasm/modules/parsers/gas/gas-token.re
+	@mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/re2c" -b -o "$(gyp_intermediate_dir)/third_party/yasm/gas-token.c" source/patched-yasm/modules/parsers/gas/gas-token.re
 
 
 $(gyp_intermediate_dir)/third_party/yasm/nasm-token.c: gyp_local_path := $(LOCAL_PATH)
@@ -139,7 +139,7 @@ $(gyp_intermediate_dir)/third_party/yasm/nasm-token.c: gyp_intermediate_dir := $
 $(gyp_intermediate_dir)/third_party/yasm/nasm-token.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_intermediate_dir)/third_party/yasm/nasm-token.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_intermediate_dir)/third_party/yasm/nasm-token.c: $(LOCAL_PATH)/third_party/yasm/source/patched-yasm/modules/parsers/nasm/nasm-token.re $(gyp_shared_intermediate_dir)/re2c $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/re2c" -b -o "$(gyp_intermediate_dir)/third_party/yasm/nasm-token.c" source/patched-yasm/modules/parsers/nasm/nasm-token.re
+	@mkdir -p $(gyp_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/re2c" -b -o "$(gyp_intermediate_dir)/third_party/yasm/nasm-token.c" source/patched-yasm/modules/parsers/nasm/nasm-token.re
 
 
 
@@ -160,9 +160,9 @@ GYP_GENERATED_OUTPUTS := \
 LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTPUTS)
 
 $(gyp_intermediate_dir)/x86cpu.c: $(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/x86regtmod.c: $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/third_party/yasm/nasm-macros.c \
 	$(gyp_intermediate_dir)/third_party/yasm/lc3bid.c \

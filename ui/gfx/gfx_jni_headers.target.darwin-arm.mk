@@ -23,7 +23,7 @@ $(gyp_shared_intermediate_dir)/ui/gfx/jni/BitmapHelper_jni.h: gyp_intermediate_d
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/BitmapHelper_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/BitmapHelper_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/BitmapHelper_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/gfx/BitmapHelper.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/BitmapHelper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/BitmapHelper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/DeviceDisplayInfo_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -32,7 +32,7 @@ $(gyp_shared_intermediate_dir)/ui/gfx/jni/DeviceDisplayInfo_jni.h: gyp_intermedi
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/DeviceDisplayInfo_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/DeviceDisplayInfo_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/DeviceDisplayInfo_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/gfx/DeviceDisplayInfo.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/DeviceDisplayInfo.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/DeviceDisplayInfo.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/ViewConfigurationHelper_jni.h: gyp_local_path := $(LOCAL_PATH)
@@ -41,7 +41,7 @@ $(gyp_shared_intermediate_dir)/ui/gfx/jni/ViewConfigurationHelper_jni.h: gyp_int
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/ViewConfigurationHelper_jni.h: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/ViewConfigurationHelper_jni.h: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/ui/gfx/jni/ViewConfigurationHelper_jni.h: $(LOCAL_PATH)/ui/android/java/src/org/chromium/ui/gfx/ViewConfigurationHelper.java $(LOCAL_PATH)/base/android/jni_generator/jni_generator.py $(LOCAL_PATH)/android_webview/build/jarjar-rules.txt $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/ViewConfigurationHelper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
+	@mkdir -p $(gyp_shared_intermediate_dir)/ui/gfx/jni; cd $(gyp_local_path)/ui/gfx; ../../base/android/jni_generator/jni_generator.py --input_file ../android/java/src/org/chromium/ui/gfx/ViewConfigurationHelper.java --output_dir "$(gyp_shared_intermediate_dir)/ui/gfx/jni" --includes base/android/jni_generator/jni_generator_helper.h --optimize_generation 0 --jarjar ../../android_webview/build/jarjar-rules.txt --ptr_type long --native_exports
 
 
 

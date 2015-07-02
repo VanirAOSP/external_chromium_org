@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/Cano
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalButtonIndex.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalButtonIndex.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalButtonIndex.java: $(LOCAL_PATH)/content/public/android/java/src/org/chromium/content/browser/input/CanonicalButtonIndex.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/content/browser/gamepad/canonical_axis_index_list.h $(LOCAL_PATH)/content/browser/gamepad/canonical_button_index_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalButtonIndex.java" "--template=public/android/java/src/org/chromium/content/browser/input/CanonicalButtonIndex.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalButtonIndex.java" "--template=public/android/java/src/org/chromium/content/browser/input/CanonicalButtonIndex.template"
 
 
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java: gyp_local_path := $(LOCAL_PATH)
@@ -31,7 +31,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/Cano
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java: $(LOCAL_PATH)/content/public/android/java/src/org/chromium/content/browser/input/CanonicalAxisIndex.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/content/browser/gamepad/canonical_axis_index_list.h $(LOCAL_PATH)/content/browser/gamepad/canonical_button_index_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java" "--template=public/android/java/src/org/chromium/content/browser/input/CanonicalAxisIndex.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input; cd $(gyp_local_path)/content; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/content/browser/input/CanonicalAxisIndex.java" "--template=public/android/java/src/org/chromium/content/browser/input/CanonicalAxisIndex.template"
 
 
 

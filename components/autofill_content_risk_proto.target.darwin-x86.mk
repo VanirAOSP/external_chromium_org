@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/
 $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py: $(LOCAL_PATH)/components/autofill/content/browser/risk/proto/fingerprint.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto; cd $(gyp_local_path)/components; python ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto/fingerprint.pb.h" --proto-in-dir autofill/content/browser/risk/proto --proto-in-file "fingerprint$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto" --python_out "$(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto"
+	@mkdir -p $(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto; cd $(gyp_local_path)/components; python ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto/fingerprint.pb.h" --proto-in-dir autofill/content/browser/risk/proto --proto-in-file "fingerprint$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto" --python_out "$(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto"
 
 $(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto/fingerprint.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto/fingerprint.pb.h: $(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py ;
@@ -38,7 +38,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/fingerprint.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/components/autofill/content/browser/risk/proto/fingerprint.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/fingerprint.pb.cc \
 	$(gyp_shared_intermediate_dir)/pyproto/components/autofill/content/browser/risk/proto/fingerprint_pb2.py \

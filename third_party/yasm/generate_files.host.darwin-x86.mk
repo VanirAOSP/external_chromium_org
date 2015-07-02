@@ -50,7 +50,7 @@ $(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c: gyp_intermediate_dir :
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c: $(LOCAL_PATH)/third_party/yasm/source/patched-yasm/modules/arch/x86/x86cpu.gperf $(gyp_shared_intermediate_dir)/genperf $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" source/patched-yasm/modules/arch/x86/x86cpu.gperf "$(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c"
+	@mkdir -p $(gyp_shared_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" source/patched-yasm/modules/arch/x86/x86cpu.gperf "$(gyp_shared_intermediate_dir)/third_party/yasm/x86cpu.c"
 
 
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c: gyp_local_path := $(LOCAL_PATH)
@@ -59,7 +59,7 @@ $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c: gyp_intermediate_d
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c: $(LOCAL_PATH)/third_party/yasm/source/patched-yasm/modules/arch/x86/x86regtmod.gperf $(gyp_shared_intermediate_dir)/genperf $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" source/patched-yasm/modules/arch/x86/x86regtmod.gperf "$(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c"
+	@mkdir -p $(gyp_shared_intermediate_dir)/third_party/yasm; cd $(gyp_local_path)/third_party/yasm; "$(gyp_shared_intermediate_dir)/genperf" source/patched-yasm/modules/arch/x86/x86regtmod.gperf "$(gyp_shared_intermediate_dir)/third_party/yasm/x86regtmod.c"
 
 
 

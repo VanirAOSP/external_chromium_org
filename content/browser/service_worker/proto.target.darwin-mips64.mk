@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_wo
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_cache_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_cache_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_cache_pb2.py: $(LOCAL_PATH)/content/browser/service_worker/service_worker_cache.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker; cd $(gyp_local_path)/content/browser/service_worker; python ../../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_cache.pb.h" --proto-in-dir . --proto-in-file "service_worker_cache$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker" --python_out "$(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker"
+	@mkdir -p $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker; cd $(gyp_local_path)/content/browser/service_worker; python ../../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_cache.pb.h" --proto-in-dir . --proto-in-file "service_worker_cache$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker" --python_out "$(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker"
 
 $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_cache.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_cache_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_cache.pb.h: $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_cache_pb2.py ;
@@ -33,7 +33,7 @@ $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_wo
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_database_pb2.py: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_database_pb2.py: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_database_pb2.py: $(LOCAL_PATH)/content/browser/service_worker/service_worker_database.proto $(LOCAL_PATH)/tools/protoc_wrapper/protoc_wrapper.py $(gyp_shared_intermediate_dir)/protoc $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker; cd $(gyp_local_path)/content/browser/service_worker; python ../../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_database.pb.h" --proto-in-dir . --proto-in-file "service_worker_database$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker" --python_out "$(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker"
+	@mkdir -p $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker; cd $(gyp_local_path)/content/browser/service_worker; python ../../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_database.pb.h" --proto-in-dir . --proto-in-file "service_worker_database$(suffix $<)" "--use-system-protobuf=0" -- "$(gyp_shared_intermediate_dir)/protoc" --cpp_out "$(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker" --python_out "$(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker"
 
 $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_database.pb.cc: $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_database_pb2.py ;
 $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_database.pb.h: $(gyp_shared_intermediate_dir)/pyproto/content/browser/service_worker/service_worker_database_pb2.py ;
@@ -52,9 +52,9 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(GYP_TARGET_DEPENDENCIES) $(GYP_GENERATED_OUTP
 
 LOCAL_CPP_EXTENSION := .cc
 $(gyp_intermediate_dir)/service_worker_cache.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_cache.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 $(gyp_intermediate_dir)/service_worker_database.pb.cc: $(gyp_shared_intermediate_dir)/protoc_out/content/browser/service_worker/service_worker_database.pb.cc
-	mkdir -p $(@D); cp $< $@
+	@mkdir -p $(@D); cp $< $@
 LOCAL_GENERATED_SOURCES := \
 	$(gyp_intermediate_dir)/service_worker_cache.pb.cc \
 	$(gyp_intermediate_dir)/service_worker_database.pb.cc \

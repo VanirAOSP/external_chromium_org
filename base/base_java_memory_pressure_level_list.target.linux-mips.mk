@@ -22,7 +22,7 @@ $(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelLi
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelList.java: gyp_shared_intermediate_dir := $(abspath $(gyp_shared_intermediate_dir))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelList.java: export PATH := $(subst $(ANDROID_BUILD_PATHS),,$(PATH))
 $(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelList.java: $(LOCAL_PATH)/base/android/java/src/org/chromium/base/MemoryPressureLevelList.template $(LOCAL_PATH)/build/android/gyp/util/build_utils.py $(LOCAL_PATH)/build/android/gyp/gcc_preprocess.py $(LOCAL_PATH)/base/memory/memory_pressure_level_list.h $(GYP_TARGET_DEPENDENCIES)
-	mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/base; cd $(gyp_local_path)/base; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelList.java" "--template=android/java/src/org/chromium/base/MemoryPressureLevelList.template"
+	@mkdir -p $(gyp_shared_intermediate_dir)/templates/org/chromium/base; cd $(gyp_local_path)/base; python ../build/android/gyp/gcc_preprocess.py "--include-path=.." "--output=$(gyp_shared_intermediate_dir)/templates/org/chromium/base/MemoryPressureLevelList.java" "--template=android/java/src/org/chromium/base/MemoryPressureLevelList.template"
 
 
 
